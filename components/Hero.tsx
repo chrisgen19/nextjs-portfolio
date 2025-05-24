@@ -44,7 +44,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          I&apos;m John Doe
+          I&apos;m Christian D.
         </motion.h1>
         
         <motion.p 
@@ -89,7 +89,7 @@ export default function Hero() {
             href="#contact" 
             className="cta-button cta-secondary"
             onClick={(e) => handleCTAClick(e, '#contact')}
-            aria-label="Contact John Doe for collaboration opportunities"
+            aria-label="Contact Christian D. for collaboration opportunities"
           >
             Get In Touch
           </a>

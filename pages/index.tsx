@@ -12,8 +12,8 @@ import Footer from '../components/Footer'
 
 // SEO Data
 const seoData = {
-  name: "John Doe",
-  title: "John Doe - Full Stack Developer & Creative Problem Solver",
+  name: "Christian D.",
+  title: "Christian D. - Full Stack Developer & Creative Problem Solver",
   description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies. 15+ years building innovative digital solutions for startups and enterprises.",
   keywords: "Full Stack Developer, React Developer, Next.js, Node.js, JavaScript, TypeScript, Web Development, Software Engineer, Frontend Developer, Backend Developer",
   url: "https://cgdiomampo.vercel.app", // Replace with your actual URL

@@ -6,7 +6,7 @@ export default function Footer() {
     <footer>
       <div className="footer-container">
         <div className="footer-section">
-          <h4>John Doe</h4>
+          <h4>Christian D.</h4>
           <p>
             Full Stack Developer passionate about creating innovative digital solutions 
             that make a difference. Let&apos;s build something amazing together!
@@ -56,7 +56,7 @@ export default function Footer() {
       </div>
       
       <div className="footer-bottom">
-        <p>&copy; 2025 John Doe. All rights reserved. | Built with ❤️ and lots of ☕</p>
+        <p>&copy; 2025 Christian D.. All rights reserved. | Built with ❤️ and lots of ☕</p>
       </div>
     </footer>
   )

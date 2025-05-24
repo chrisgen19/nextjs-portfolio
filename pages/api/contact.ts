@@ -52,7 +52,7 @@ export default async function handler(
     notificationEmail.to = [
       {
         email: process.env.CONTACT_EMAIL || 'your-email@gmail.com',
-        name: 'John Doe'
+        name: 'Christian D.'
       }
     ]
     notificationEmail.templateId = parseInt(process.env.BREVO_NOTIFICATION_TEMPLATE_ID || '1') // Replace with your template ID

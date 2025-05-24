@@ -59,7 +59,7 @@ export default function About() {
           <div className="image-wrapper">
             <Image
               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
-              alt="Professional headshot of John Doe, Full Stack Developer"
+              alt="Professional headshot of Christian D., Full Stack Developer"
               width={500}
               height={600}
               sizes="(max-width: 768px) 100vw, 50vw"
