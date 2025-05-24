@@ -94,11 +94,10 @@ export default function Portfolio() {
               <div className="browser-content">
                 <Image
                   src={project.image}
-                  alt={project.title}
+                  alt={`Screenshot of ${project.title} - ${project.tech.join(', ')} web application`}
                   width={800}
                   height={1200}
                   className="portfolio-image"
-                  priority={index < 3} // Only prioritize first 3 images
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <div className="portfolio-overlay">

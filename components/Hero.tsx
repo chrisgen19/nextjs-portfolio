@@ -23,13 +23,13 @@ export default function Hero() {
 
   return (
     <section className="banner" id="home">
-      <div className="particles">
+      <div className="particles" aria-hidden="true">
         {particles.map((_, index) => (
           <div key={index} className={`particle particle-${index + 1}`} />
         ))}
       </div>
       
-      <div className="content">
+      <header className="content">
         <motion.p 
           className="greeting"
           initial={{ opacity: 0, y: 30 }}
@@ -53,7 +53,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Full Stack Developer & <span>Creative Thinker</span>
+          Full Stack Developer & <span>Creative Problem Solver</span>
         </motion.p>
         
         <motion.div 
@@ -63,14 +63,16 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <p>
-            Crafting digital experiences with clean code and innovative solutions. 
-            Specialized in modern web technologies, turning complex problems into 
-            elegant, user-friendly applications.
+            Experienced Full Stack Developer with 15+ years of expertise in React, Next.js, Node.js, 
+            and modern web technologies. Specialized in building scalable applications and 
+            innovative digital solutions for startups and enterprises. Passionate about creating 
+            elegant, user-friendly applications that solve real-world problems.
           </p>
         </motion.div>
         
-        <motion.div 
+        <motion.nav 
           className="cta-container"
+          aria-label="Main navigation actions"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
@@ -79,6 +81,7 @@ export default function Hero() {
             href="#projects" 
             className="cta-button cta-primary"
             onClick={(e) => handleCTAClick(e, '#projects')}
+            aria-label="View portfolio projects and work samples"
           >
             View My Work
           </a>
@@ -86,13 +89,14 @@ export default function Hero() {
             href="#contact" 
             className="cta-button cta-secondary"
             onClick={(e) => handleCTAClick(e, '#contact')}
+            aria-label="Contact John Doe for collaboration opportunities"
           >
             Get In Touch
           </a>
-        </motion.div>
-      </div>
+        </motion.nav>
+      </header>
       
-      <div className="scroll-indicator"></div>
+      <div className="scroll-indicator" aria-hidden="true"></div>
     </section>
   )
 }
