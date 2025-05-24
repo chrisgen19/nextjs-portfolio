@@ -16,6 +16,20 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('menu-open')
+    } else {
+      document.body.classList.remove('menu-open')
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('menu-open')
+    }
+  }, [isMenuOpen])
+
   // Smooth scroll function
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -34,12 +48,26 @@ export default function Navigation() {
     scrollToSection(sectionId)
   }
 
+  // Close menu when clicking outside (for mobile)
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      setIsMenuOpen(false)
+    }
+  }
+
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
-        <Link href="#" className="logo">Christian D.</Link>
+        {/* Logo */}
+        <Link href="#" className="logo" onClick={(e) => handleLinkClick(e, 'home')}>
+          CGD
+        </Link>
         
-        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+        {/* Desktop & Mobile Navigation Menu */}
+        <ul 
+          className={`nav-menu ${isMenuOpen ? 'active' : ''}`}
+          onClick={handleOverlayClick}
+        >
           <li>
             <a 
               href="#home" 
@@ -95,16 +123,23 @@ export default function Navigation() {
             </a>
           </li>
           <li>
-            <Link href="/resume.pdf" className="nav-cta" download>
+            <Link 
+              href="/resume.pdf" 
+              className="nav-cta" 
+              download
+              onClick={() => setIsMenuOpen(false)}
+            >
               Resume
             </Link>
           </li>
         </ul>
         
+        {/* Mobile Menu Toggle Button */}
         <button 
           className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
         >
           <span></span>
           <span></span>

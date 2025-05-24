@@ -1,8 +1,9 @@
 // components/Contact.tsx
 'use client'
-import { useState } from 'react'
+import { useState } from 'react' // useEffect is no longer needed here if only used by the hook
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useIsDesktop } from '../utils/hooks' // Adjust path if your structure is different
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
@@ -11,21 +12,23 @@ export default function Contact() {
     name: '',
     email: '',
     message: ''
-  })
-  const [status, setStatus] = useState<FormStatus>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
+  });
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const isDesktop = useIsDesktop(); // Use the imported hook
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
-    })
+    });
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('loading')
-    setErrorMessage('')
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
 
     try {
       const response = await fetch('/api/contact', {
@@ -34,31 +37,29 @@ export default function Contact() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (response.ok) {
-        setStatus('success')
-        setFormData({ name: '', email: '', message: '' })
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
         
-        // Reset to idle after 5 seconds
         setTimeout(() => {
-          setStatus('idle')
-        }, 5000)
+          setStatus('idle');
+        }, 5000);
       } else {
-        throw new Error(data.message || 'Failed to send message')
+        throw new Error(data.message || 'Failed to send message');
       }
     } catch (error) {
-      console.error('Contact form error:', error)
-      setStatus('error')
-      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong')
+      console.error('Contact form error:', error);
+      setStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong');
       
-      // Reset to idle after 5 seconds
       setTimeout(() => {
-        setStatus('idle')
-        setErrorMessage('')
-      }, 5000)
+        setStatus('idle');
+        setErrorMessage('');
+      }, 5000);
     }
   }
 
@@ -79,15 +80,33 @@ export default function Contact() {
     }
   }
 
+  // Define animation variants
+  const formWrapperDesktopAnimation = {
+    initial: { opacity: 0, x: -50 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8 },
+  };
+
+  const contactInfoDesktopAnimation = {
+    initial: { opacity: 0, x: 50 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8, delay: 0.2 },
+  };
+
+  // Define what happens on mobile (no animation or static state)
+  const noAnimation = {
+    initial: { opacity: 1, x: 0, y: 0 }, // Ensure all animated properties are reset
+    whileInView: { opacity: 1, x: 0, y: 0 },
+  };
+
   return (
     <section className="contact-section" id="contact">
       <div className="contact-container">
         <motion.div 
           className="contact-form-wrapper"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          {...(isDesktop ? formWrapperDesktopAnimation : noAnimation)}
         >
           <div className="section-header" style={{ textAlign: 'left' }}>
             <p className="section-subtitle">Get In Touch</p>
@@ -158,7 +177,7 @@ export default function Contact() {
                 borderRadius: '8px',
                 border: '1px solid rgba(40, 202, 66, 0.3)'
               }}>
-                ✅ Message sent successfully! I'll get back to you soon.
+                ✅ Message sent successfully! I&apos;ll get back to you soon.
               </div>
             )}
             
@@ -175,10 +194,7 @@ export default function Contact() {
 
         <motion.div 
           className="contact-info"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          {...(isDesktop ? contactInfoDesktopAnimation : noAnimation)}
         >
           <h3>Let&apos;s Connect</h3>
           <p>
@@ -236,5 +252,5 @@ export default function Contact() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

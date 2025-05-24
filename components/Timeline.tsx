@@ -1,5 +1,9 @@
+// components/Timeline.tsx
 'use client'
 import { motion } from 'framer-motion'
+// Remove useState and useEffect if no longer used directly in this component for other purposes
+// For this specific refactor, they are only needed by the hook, which now lives elsewhere.
+import { useIsDesktop } from '../utils/hooks' // Adjust path if your structure is different
 
 const experiences = [
   {
@@ -9,7 +13,7 @@ const experiences = [
     description: "Leading a team of 12 developers in building enterprise-scale applications. Architecting cloud-native solutions and implementing best practices across the organization.",
     achievements: [
       "Reduced deployment time by 70% through CI/CD implementation",
-      "Led migration of legacy systems to microservices architecture", 
+      "Led migration of legacy systems to microservices architecture",
       "Mentored 20+ junior developers"
     ]
   },
@@ -25,7 +29,7 @@ const experiences = [
     ]
   },
   {
-    title: "Frontend Developer", 
+    title: "Frontend Developer",
     company: "Creative Web Agency",
     period: "2015 - 2019",
     description: "Specialized in creating responsive, user-friendly interfaces for various clients. Worked closely with designers to implement pixel-perfect designs.",
@@ -37,7 +41,7 @@ const experiences = [
   },
   {
     title: "Junior Web Developer",
-    company: "StartUp Hub", 
+    company: "StartUp Hub",
     period: "2010 - 2015",
     description: "Started my professional journey building websites and learning modern web technologies. Gained hands-on experience with HTML, CSS, JavaScript, and PHP.",
     achievements: [
@@ -46,18 +50,39 @@ const experiences = [
       "Received \"Rising Star\" award in 2012"
     ]
   }
-]
+];
 
 export default function Timeline() {
+  const isDesktop = useIsDesktop(); // Use the imported hook
+
+  // Animation for the section header
+  const sectionHeaderDesktopAnimation = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8 },
+  };
+
+  // Animation for timeline items (dynamic based on index)
+  const getTimelineItemDesktopAnimation = (index: number) => ({
+    initial: { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8, delay: index * 0.15 },
+  });
+
+  // Static state for mobile (no animation)
+  const noAnimation = {
+    initial: { opacity: 1, y: 0, x: 0 },
+    whileInView: { opacity: 1, y: 0, x: 0 },
+  };
+
   return (
     <section className="timeline-section" id="experience">
       <div className="timeline-container">
-        <motion.div 
+        <motion.div
           className="section-header"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          {...(isDesktop ? sectionHeaderDesktopAnimation : noAnimation)}
         >
           <p className="section-subtitle">Experience</p>
           <h2 className="section-title">Professional Journey</h2>
@@ -66,13 +91,10 @@ export default function Timeline() {
 
         <div className="timeline">
           {experiences.map((exp, index) => (
-            <motion.div 
+            <motion.div
               key={exp.title}
               className="timeline-item"
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
+              {...(isDesktop ? getTimelineItemDesktopAnimation(index) : noAnimation)}
             >
               <div className="timeline-content">
                 <h3 className="job-title">{exp.title}</h3>
@@ -91,5 +113,5 @@ export default function Timeline() {
         </div>
       </div>
     </section>
-  )
+  );
 }
