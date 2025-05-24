@@ -37,7 +37,7 @@ export default function Navigation() {
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
-        <Link href="#" className="logo">JD</Link>
+        <Link href="#" className="logo">Christian D.</Link>
         
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li>
