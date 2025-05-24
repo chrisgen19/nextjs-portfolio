@@ -9,15 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@getbrevo/brevo": "^2.2.0",
     "framer-motion": "^10.16.4",
     "next": "^15.1.8",
-    "nodemailer": "^6.9.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sib-api-v3-sdk": "^8.5.0"
   },
   "devDependencies": {
     "@types/node": "^20.8.0",
-    "@types/nodemailer": "^6.4.14",
     "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.10",
     "autoprefixer": "^10.4.21",

@@ -1,7 +1,10 @@
+// components/Contact.tsx
 'use client'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+
+type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,7 +12,8 @@ export default function Contact() {
     email: '',
     message: ''
   })
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [status, setStatus] = useState<FormStatus>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -18,15 +22,61 @@ export default function Contact() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
-    setIsSubmitted(true)
-    setFormData({ name: '', email: '', message: '' })
-    
-    setTimeout(() => {
-      setIsSubmitted(false)
-    }, 3000)
+    setStatus('loading')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+        
+        // Reset to idle after 5 seconds
+        setTimeout(() => {
+          setStatus('idle')
+        }, 5000)
+      } else {
+        throw new Error(data.message || 'Failed to send message')
+      }
+    } catch (error) {
+      console.error('Contact form error:', error)
+      setStatus('error')
+      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong')
+      
+      // Reset to idle after 5 seconds
+      setTimeout(() => {
+        setStatus('idle')
+        setErrorMessage('')
+      }, 5000)
+    }
+  }
+
+  const getButtonText = () => {
+    switch (status) {
+      case 'loading': return '⏳ Sending...'
+      case 'success': return '✅ Message Sent!'
+      case 'error': return '❌ Try Again'
+      default: return 'Send Message'
+    }
+  }
+
+  const getButtonStyle = () => {
+    switch (status) {
+      case 'success': return { background: 'linear-gradient(135deg, #28ca42 0%, #22a737 100%)' }
+      case 'error': return { background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%)' }
+      default: return {}
+    }
   }
 
   return (
@@ -55,6 +105,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 placeholder="John Smith"
+                disabled={status === 'loading'}
               />
             </div>
             <div className="form-group">
@@ -67,6 +118,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 placeholder="john@example.com"
+                disabled={status === 'loading'}
               />
             </div>
             <div className="form-group">
@@ -78,14 +130,45 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 placeholder="Tell me about your project..."
+                disabled={status === 'loading'}
               />
             </div>
+            
+            {errorMessage && (
+              <div style={{ 
+                color: '#ff6b6b', 
+                marginBottom: '1rem', 
+                textAlign: 'center',
+                padding: '12px',
+                background: 'rgba(255, 107, 107, 0.1)',
+                borderRadius: '8px',
+                border: '1px solid rgba(255, 107, 107, 0.3)'
+              }}>
+                {errorMessage}
+              </div>
+            )}
+            
+            {status === 'success' && (
+              <div style={{ 
+                color: '#28ca42', 
+                marginBottom: '1rem', 
+                textAlign: 'center',
+                padding: '12px',
+                background: 'rgba(40, 202, 66, 0.1)',
+                borderRadius: '8px',
+                border: '1px solid rgba(40, 202, 66, 0.3)'
+              }}>
+                ✅ Message sent successfully! I'll get back to you soon.
+              </div>
+            )}
+            
             <button 
               type="submit" 
               className="submit-btn"
-              style={isSubmitted ? { background: 'linear-gradient(135deg, #28ca42 0%, #22a737 100%)' } : {}}
+              style={getButtonStyle()}
+              disabled={status === 'loading'}
             >
-              {isSubmitted ? '✓ Message Sent!' : 'Send Message'}
+              {getButtonText()}
             </button>
           </form>
         </motion.div>
