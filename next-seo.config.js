@@ -2,14 +2,14 @@
 export default {
   title: 'John Doe - Full Stack Developer',
   description: 'Experienced Full Stack Developer specializing in React, Next.js, and modern web technologies.',
-  canonical: 'https://your-domain.vercel.app',
+  canonical: 'https://cgdiomampo.vercel.app',
   openGraph: {
-    url: 'https://your-domain.vercel.app',
+    url: 'https://cgdiomampo.vercel.app',
     title: 'John Doe - Full Stack Developer',
     description: 'Experienced Full Stack Developer specializing in React, Next.js, and modern web technologies.',
     images: [
       {
-        url: 'https://your-domain.vercel.app/og-image.jpg',
+        url: 'https://cgdiomampo.vercel.app/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'John Doe - Full Stack Developer',

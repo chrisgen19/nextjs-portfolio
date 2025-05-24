@@ -16,8 +16,8 @@ const seoData = {
   title: "John Doe - Full Stack Developer & Creative Problem Solver",
   description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies. 15+ years building innovative digital solutions for startups and enterprises.",
   keywords: "Full Stack Developer, React Developer, Next.js, Node.js, JavaScript, TypeScript, Web Development, Software Engineer, Frontend Developer, Backend Developer",
-  url: "https://your-domain.vercel.app", // Replace with your actual URL
-  image: "https://your-domain.vercel.app/og-image.jpg", // Add this image
+  url: "https://cgdiomampo.vercel.app", // Replace with your actual URL
+  image: "https://cgdiomampo.vercel.app/og-image.jpg", // Add this image
   location: "San Francisco, CA",
   email: "john.doe@example.com",
   phone: "+1 (234) 567-890"
