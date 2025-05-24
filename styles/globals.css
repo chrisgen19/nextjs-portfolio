@@ -1337,6 +1337,7 @@ h1 {
 }
 
 /* Footer */
+/* Footer - Improved Contrast */
 footer {
   background: #0a0a0a;
   padding: 3rem 2rem 1.5rem;
@@ -1353,13 +1354,14 @@ footer {
 }
 
 .footer-section h4 {
-  color: #fff;
+  color: #ffffff; /* Pure white for headings - highest contrast */
   margin-bottom: 1rem;
   font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .footer-section p {
-  color: #888;
+  color: #e0e0e0; /* Much lighter gray - good contrast */
   line-height: 1.6;
   margin-bottom: 1rem;
 }
@@ -1373,51 +1375,77 @@ footer {
 }
 
 .footer-links a {
-  color: #888;
+  color: #b0b0b0; /* Light gray for links - accessible contrast */
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
 }
 
 .footer-links a:hover {
-  color: #667eea;
+  color: #667eea; /* Your brand color on hover */
   padding-left: 5px;
+}
+
+.footer-links a:focus {
+  color: #667eea;
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .footer-bottom {
   text-align: center;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  color: #666;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #999999; /* Medium gray - still accessible */
+  font-size: 0.9rem;
 }
 
 .footer-bottom a {
-  color: #667eea;
+  color: #667eea; /* Brand color for links */
   text-decoration: none;
+  font-weight: 500;
 }
 
-/* Responsive Contact & Footer */
-@media (max-width: 968px) {
-  .contact-container {
-    grid-template-columns: 1fr;
-  }
+.footer-bottom a:hover {
+  color: #7c8aed; /* Slightly lighter on hover */
+  text-decoration: underline;
+}
 
+.footer-bottom a:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Social Links in Footer - Enhanced Contrast */
+.footer-section .social-links .social-link {
+  background: rgba(255, 255, 255, 0.08); /* Slightly more visible */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* More visible border */
+  color: #e0e0e0; /* Better contrast for icons */
+}
+
+.footer-section .social-links .social-link:hover {
+  background: rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+  color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 968px) {
   .footer-container {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  .contact-form-wrapper {
-    padding: 2rem;
-  }
-
   .footer-container {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 2rem;
   }
-
-  .social-links {
-    justify-content: center;
+  
+  .footer-section {
+    margin-bottom: 1.5rem;
   }
 }
