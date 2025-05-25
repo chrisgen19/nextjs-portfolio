@@ -12,10 +12,10 @@ export default function Footer() {
             that make a difference. Let&apos;s build something amazing together!
           </p>
           <div className="social-links">
-            <Link href="https://linkedin.com" target="_blank" className="social-link" title="LinkedIn">
+            <Link href="https://www.linkedin.com/in/cgdiomampo/" target="_blank" className="social-link" title="LinkedIn">
               <span>in</span>
             </Link>
-            <Link href="https://github.com" target="_blank" className="social-link" title="GitHub">
+            <Link href="https://github.com/chrisgen19" target="_blank" className="social-link" title="GitHub">
               <span>⚡</span>
             </Link>
             <Link href="https://twitter.com" target="_blank" className="social-link" title="Twitter">

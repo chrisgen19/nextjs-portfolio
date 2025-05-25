@@ -14,13 +14,13 @@ import Footer from '../components/Footer'
 const seoData = {
   name: "Christian D.",
   title: "Christian D. - Full Stack Developer & Creative Problem Solver",
-  description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies. 15+ years building innovative digital solutions for startups and enterprises.",
-  keywords: "Full Stack Developer, React Developer, Next.js, Node.js, JavaScript, TypeScript, Web Development, Software Engineer, Frontend Developer, Backend Developer",
+  description: "Experienced Full Stack Developer with 15+ years of expertise in Wordpress, Laravel, React, and modern web technologies. Specialized in building scalable applications and innovative digital solutions for startups and enterprises.",
+  keywords: "Full Stack Developer, WordPress Developer, PHP and MySQL Developer, React Developer, Next.js, Node.js, JavaScript, TypeScript, Web Development, Software Engineer, Frontend Developer, Backend Developer",
   url: "https://cgdiomampo.vercel.app", // Replace with your actual URL
   image: "https://cgdiomampo.vercel.app/og-image.jpg", // Add this image
-  location: "San Francisco, CA",
-  email: "john.doe@example.com",
-  phone: "+1 (234) 567-890"
+  location: "Metro Manila, Philippines",
+  email: "chrisgen19@gmail.com",
+  phone: "+63 976 555 3507"
 }
 
 export default function Home() {
@@ -36,13 +36,13 @@ export default function Home() {
     "telephone": seoData.phone,
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "San Francisco",
-      "addressRegion": "CA",
-      "addressCountry": "US"
+      "addressLocality": "Pasig City",
+      "addressRegion": "Metro Manila",
+      "addressCountry": "PH"
     },
     "sameAs": [
-      "https://linkedin.com/in/your-profile",
-      "https://github.com/your-username",
+      "https://www.linkedin.com/in/cgdiomampo",
+      "https://github.com/chrisgen19",
       "https://twitter.com/your-handle"
     ],
     "knowsAbout": [

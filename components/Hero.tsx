@@ -63,7 +63,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <p>
-            Experienced Full Stack Developer with 15+ years of expertise in React, Next.js, Node.js, 
+            Experienced Full Stack Developer with 15+ years of expertise in Wordpress, Laravel, React, 
             and modern web technologies. Specialized in building scalable applications and 
             innovative digital solutions for startups and enterprises. Passionate about creating 
             elegant, user-friendly applications that solve real-world problems.

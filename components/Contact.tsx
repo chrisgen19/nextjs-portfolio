@@ -207,8 +207,8 @@ export default function Contact() {
               <div className="contact-icon">📧</div>
               <div className="contact-text">
                 <span className="contact-label">Email</span>
-                <Link href="mailto:john.doe@example.com" className="contact-value">
-                  john.doe@example.com
+                <Link href="mailto:chrisgen19@gmail.com" className="contact-value">
+                  chrisgen19@gmail.com
                 </Link>
               </div>
             </div>
@@ -217,8 +217,8 @@ export default function Contact() {
               <div className="contact-icon">📱</div>
               <div className="contact-text">
                 <span className="contact-label">Phone</span>
-                <Link href="tel:+1234567890" className="contact-value">
-                  +1 (234) 567-890
+                <Link href="tel:+639765553507" className="contact-value">
+                  +63 976 555 3507
                 </Link>
               </div>
             </div>
@@ -227,16 +227,16 @@ export default function Contact() {
               <div className="contact-icon">📍</div>
               <div className="contact-text">
                 <span className="contact-label">Location</span>
-                <span className="contact-value">San Francisco, CA</span>
+                <span className="contact-value">Metro Manila, Philippines</span>
               </div>
             </div>
           </div>
 
           <div className="social-links">
-            <Link href="https://linkedin.com" target="_blank" className="social-link" title="LinkedIn">
+            <Link href="https://www.linkedin.com/in/cgdiomampo/" target="_blank" className="social-link" title="LinkedIn">
               <span>in</span>
             </Link>
-            <Link href="https://github.com" target="_blank" className="social-link" title="GitHub">
+            <Link href="https://github.com/chrisgen19" target="_blank" className="social-link" title="GitHub">
               <span>⚡</span>
             </Link>
             <Link href="https://twitter.com" target="_blank" className="social-link" title="Twitter">
