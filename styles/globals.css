@@ -496,6 +496,12 @@ h1 {
   }
 }
 
+@media (max-width: 480px) {
+  .scroll-indicator {
+    display: none;
+  }
+}
+
 /* Portfolio Section */
 .portfolio-section {
   padding: 5rem 2rem;
